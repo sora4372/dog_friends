@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+          integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma-rtl.min.css">
+
+
+    <title>Document</title>
+
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 150px;
+            background: lightsalmon;
+        }
+
+        .navbar_logo {
+            margin-left: 30px;
+            font-size: 50px;
+        }
+
+        .navbar_title {
+            font-size: 40px;
+            word-spacing: 1rem;
+        }
+
+        .profile {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 30px;
+        }
+
+        .strong_name {
+            color: black;
+            font-size: 20px;
+            margin-right: 3px;
+        }
+
+        .dog_main {
+            width: 95%;
+            margin: auto;
+        }
+
+        .dog_list {
+            /*display: grid;*/
+            /*grid-template-rows: repeat(5, 600px);*/
+            /*grid-template-columns: repeat(3, 350px);*/
+            /*justify-content: space-between;*/
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: space-around;
+            margin: 30px;
+        }
+
+        .dog_book {
+            /*border: 3px solid black;*/
+            border-radius: 30px;
+            box-shadow: 3px 3px 3px 3px lightgray;
+            width: 300px;
+            height: 470px;
+            margin: 30px auto;
+            /*width : 25%;*/
+        }
+
+        .dog_photo:hover {
+            transform: scale3d(1.1, 1.1, 1.1);
+            cursor: pointer;
+        }
+
+        .dog_photo img {
+            display: block;
+            /*border: 3px solid pink;*/
+            border-radius: 20px;
+            width: 250px;
+            height: 250px;
+            margin: 25px auto;
+            /*text-align: center;*/
+        }
+
+        .toggle_heart {
+            margin: 0 30px;
+        }
+
+        .regist_btn {
+            display: flex;
+            /*width: px;*/
+            margin: 20px;
+        }
+
+        #select_search {
+            width: 100px;
+            height: 50px;
+            font-size: 18px;
+            margin: 0 30px;
+            border: none;
+            background: lightsalmon;
+            border-radius: 10px;
+            padding: 5px;
+            color: white;
+        }
+
+        .btn_style {
+            width: 180px;
+            height: 55px;
+            font-size: 20px;
+            background: lightsalmon;
+            border: none;
+            border-radius: 10px;
+            color: white;
+        }
+
+        .btn_style:hover {
+            transform: scale3d(1.1, 1.1, 1.1);
+            cursor: pointer;
+        }
+
+        .front_dog {
+            font-size: 25px;
+            text-align: center;
+        }
+
+        .dog_content {
+            margin: 10px;
+        }
+
+        .modal-card-body {
+            height: 350px;
+            font-size: 20px;
+        }
+
+        .button {
+            height: 40px;
+            margin: 5px;
+        }
+
+        .regist_dog {
+            height: 30px;
+            margin: 15px;
+        }
+
+        .regist_label {
+            display: inline-block;
+            width: 150px;
+            height: 25px;
+        }
+
+        .dog_gender {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        .modal_background {
+            background: dimgray;
+        }
+
+        .modal_card {
+            margin-top: 20px;
+            display: none;
+            background: black;
+            width: 500px;
+            heigth: 500px;
+        }
+
+        .is_active {
+            display: block;
+        }
+
+        .cancel_btn {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 10px 10px;
+            color: white;
+            font-size: 30px;
+        }
+
+        #dog_pic input {
+            /*border: 5px solid black;*/
+
+        }
+
+        .dog_picture {
+            border: 1px solid lightgray;
+            background: lightyellow;
+            border-radius: 10px;
+        }
+
+        #dog_pic input[type="file"] {
+            /*border: 3px solid black;*/
+            height: 25px;
+            overflow: hidden;
+        }
+
+        #dog_date {
+            font-size: 13px;
+            margin-left: 20px;
+        }
+
+        #login_btn {
+            border: none;
+            background: transparent;
+            border-bottom: 1px solid black;
+            font-size: 16px;
+            cursor: pointer;
+
+        }
+
+        #logout_btn {
+            border: none;
+            background: transparent;
+            border-bottom: 1px solid black;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+
+    <script>
+
+        let today = new Date().toString('%Y-%m-%d-%H-%M-%S')
+        let name = '{{name}}'
+        // alert(today)
+
+        $(document).ready(function () {
+            // alert(name)
+            if (name == "") {
+                $("#login_btn").show();
+                $("#logout_btn").hide();
+                $(".btn_style").hide();
+                $(".profile_name").hide();
+
+            } else {
+                $("#login_btn").hide();
+                $("#logout_btn").show();
+                $(".btn_style").show();
+            }
+
+            dog_search()
+            console.log(today)
+
+        })
+
+        // function dog_search(dog_kind) {
+        //     $.ajax({
+        //         type: 'GET',
+        //         url: `/get_data?dogkind_give=${dog_kind}`,
+        //         data: {},
+        //         success: function (response) {
+        //             if(response["result"] == "success") {
+        //                 let kind = response['kind']
+        //                 alert(kind)
+        //             }
+        //         }
+        //     })
+        // }
+
+        function dog_post() {
+            let dog_name = $("#regist_name").val()
+            let dog_age = $('select[name=regist_age]').val()
+            let dog_kind = $('select[name=regist_kind]').val()
+            let dog_gender = $(':radio[name=regist_gender]:checked').val()
+            let dog_locate = $('select[name=regist_locate]').val()
+            let file = $('#file')[0].files[0]
+
+            console.log(dog_kind)
+
+            let form_data = new FormData()
+
+            form_data.append('dogname_give', dog_name)
+            form_data.append('dogage_give', dog_age)
+            form_data.append('dogkind_give', dog_kind)
+            form_data.append('doggender_give', dog_gender)
+            form_data.append('doglocate_give', dog_locate)
+            form_data.append('filedate_give', today)
+            form_data.append('file_give', file)
+
+
+            $.ajax({
+                type: 'POST',
+                url: "/dog_regist",
+                data: form_data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    if (response['result'] == 'success') {
+                        alert(response['msg'])
+                        window.location.reload()
+                    } else {
+                        alert(response['msg'])
+                    }
+                }
+            })
+        }
+
+        function sign_out() {
+            //token을 버릴거야~ 라고 할떄, (자유이용권을 버린다고 할때) .removeCookie라는 jquery함수를 사용함
+            $.removeCookie('mytoken', {path: '/'});
+            alert('로그아웃!')
+            window.location.href = "/"
+        }
+
+        // console.log(dog_name,dog_year,"년",dog_month,"월",dog_day,"일",dog_kind,dog_gender)
+        // function profile_name(username){
+        //     $.ajax({
+        //         type : 'GET',
+        //         url : '/profile',
+        //         data : {username_give : username},
+        //         success : function(response){
+        //             let user_name = response['username']
+        //
+        //         }
+        //     })
+        // }
+        function dog_search() {
+            let dog_search = $("select[name=dog_search]").val();
+            $('#dog_list').empty()
+
+            $.ajax({
+                type: 'GET',
+                url: '/locate',
+                data: {doglocate_give: dog_search},
+                success: function (response) {
+                    let all_dogs = response['dogs_list']
+                    console.log(all_dogs)
+                    for (let i = 0; i < all_dogs.length; i++) {
+                        console.log(all_dogs[i])
+                        let dog = all_dogs[i]
+                        let dog_name = dog['dog_name']
+                        let dog_kind = dog['dog_kind']
+                        let dog_locate = dog['dog_locate']
+                        let file = dog['file']
+                        let dog_date = new Date(dog["upload"])
+                        let time_before = time2str(dog_date)
+
+                        let dog_html = `<div class="dog_book">
+                                            <div class="dog_photo"><a href = "/detail/${file}"><img src="../static/${file}" alt="blue_pants"></a>
+                                            </div>
+                                            <div class="toggle_heart" aria-label="heart" onclick="toggle_heart('heart')">
+                                                <span class="icon is-small"><i class="fa fa-heart"></i></span>
+                                                <span class="heart-num">1.2k</span>
+                                            </div>
+                                            <div id="dog_name" class ="front_dog">${dog_name}</div>
+                                            <div id="dog_kind" class ="front_dog">${dog_kind}</div>
+                                            <div id="dog_locate" class ="front_dog">${dog_locate}</div>
+                                            <div id="dog_date">${time_before}</div>
+                                        </div> `
+
+                        $('#dog_list').append(dog_html)
+                    }
+                }
+            })
+        }
+        function toggle_heart(dog, type) {
+            console.log(dog, type)
+
+            // let $a_like = $(`#${post_id} a[aria-label='${type}']`)
+            let $a_like = $(`#${dog} div[aria-label="heart"]`)
+            let $i_like = $a_like.find('i')
+            if ($i_like.hasClass('fa-heart')){
+                $.ajax({
+                    type: 'POST',
+                    url: '/update_like',
+                    data: {
+                        post_id_give: dog,
+                        type_give: type,
+                        action_give: 'unlike'
+                    },
+                    success: function (response) {
+                        console.log('unlike')
+                        $i_like.addClass('fa-heart-o').removeClass('fa-heart')
+                        $a_like.find('span.like-num').text(response['count'])
+                    }
+                })
+            }
+        }
+
+        function time2str(date) {
+            let today = new Date()
+            let time = (today - date) / 1000 / 60  // 분
+
+            if (time < 60) {
+                return parseInt(time) + "分前"
+            }
+            time = time / 60  // 시간
+            if (time < 24) {
+                return parseInt(time) + "時間前"
+            }
+            time = time / 24
+            if (time < 7) {
+                return parseInt(time) + "日前"
+            }
+            return `${date.getFullYear()}年 ${date.getMonth() + 1}月 ${date.getDate()}日`
+        }
+
+        function num2str(count) {
+            if (count > 10000) {
+                return parseInt(count / 1000) + "k"
+            }
+            if (count > 500) {
+                return parseInt(count / 100) / 10 + "k"
+            }
+            if (count == 0) {
+                return ""
+            }
+            return count
+        }
+
+        function sign() {
+            window.location.replace('/login')
+        }
+    </script>
+</head>
+
+<body>
+<nav class="navbar">
+    <div class="navbar_logo">
+        <i class="fas fa-icons"></i>
+    </div>
+    <div class="navbar_title">
+        DOG WORLD
+    </div>
+    <div class="profile">
+        <!--        <div class="profile_photo">-->
+        <!--            <img src="../static/jini2.jpeg">-->
+        <!--        </div>-->
+        <div class="profile_name"><span class="strong_name">{{name}}</span><strong>様</strong></div>
+        <div class="profile_login">
+            <button id="login_btn" onclick="sign()">login</button>
+            <button id="logout_btn" onclick="sign_out()">logout</button>
+        </div>
+    </div>
+</nav>
+
+<div class="wrapper">
+
+    <!--    <label for="title" class="content_form">Title :-->
+    <!--        <input type="text" id="form_title">-->
+    <!--    </label>-->
+
+    <!--    <label for="content" class="content_form">Content :-->
+    <!--        <input type="text" id="form_content">-->
+    <!--    </label>-->
+
+    <div class="regist_btn">
+        <select name="dog_search" id="select_search" style="width:200px" onchange="dog_search()">
+            <option value="all">全地域</option>
+            <option value="Hokkaido">北海道</option>
+            <option value="Aomori">青森県</option>
+            <option value="Iwate">岩手県</option>
+            <option value="Miyagi">宮城県</option>
+            <option value="Akita">秋田県</option>
+            <option value="Yamagata">山形県</option>
+            <option value="Fukushima">福島県</option>
+            <option value="Tochigi">栃木県</option>
+            <option value="Gunma">群馬県</option>
+            <option value="Saitama">埼玉県</option>
+            <option value="Chiba">千葉県</option>
+            <option value="Tokyo">東京都</option>
+            <option value="Kanagawa">神奈川県</option>
+            <option value="Niigata">新潟県</option>
+            <option value="Toyama">富山県</option>
+            <option value="Ishikawa">石川県</option>
+            <option value="Fukui">福井県</option>
+            <option value="Yamanashi">山梨県</option>
+            <option value="Nagano">長野県</option>
+            <option value="Gifu">岐阜県</option>
+            <option value="Shizuoka">静岡県</option>
+            <option value="Aichi">愛知県</option>
+            <option value="Mie">三重県</option>
+            <option value="Shiga">滋賀県</option>
+            <option value="Kyoto">京都府</option>
+            <option value="Osaka">大阪府</option>
+            <option value="Hyogo">兵庫県</option>
+            <option value="Nara">奈良県</option>
+            <option value="Wakayama">和歌山県</option>
+            <option value="Tottori">鳥取県</option>
+            <option value="Shimane">島根県</option>
+            <option value="Okayama">岡山県</option>
+            <option value="Hiroshima">広島県</option>
+            <option value="Yamaguchi">山口県</option>
+            <option value="Tokushima">徳島県</option>
+            <option value="Kagawa">香川県</option>
+            <option value="Ehime">愛媛県</option>
+            <option value="Kochi">高知県</option>
+            <option value="Fukuoka">福岡県</option>
+            <option value="Saga">佐賀県</option>
+            <option value="Nagasaki">長崎県</option>
+            <option value="Kumamoto">熊本県</option>
+            <option value="Oita">大分県</option>
+            <option value="Miyazaki">宮崎県</option>
+            <option value="Kagoshima">鹿児島県</option>
+            <option value="Okinawa">沖縄県</option>
+        </select>
+        <button class="btn_style" onclick="$('.modal').addClass('is-active')">ペット登録</button>
+    </div>
+
+    <div class="dog_main">
+        <div class="dog_list" id="dog_list">
+        </div>
+    </div>
+
+    <div class="modal">
+        <div class="modal-background" onclick="$('.modal').removeClass('is-active')"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Modal title</p>
+                <button class="delete" aria-label="close" onclick="$('.modal').removeClass('is-active')"></button>
+            </header>
+            <section class="modal-card-body">
+                <div class="content_regist">
+                    <div class="regist_dog">
+                        <label class="regist_label">ベットの名前</label>
+                        <input type="text" id="regist_name">
+                    </div>
+                    <div class="regist_dog">
+                        <label class="regist_label">강아지 나이</label>
+                        <select name="regist_age">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                            <option>16</option>
+                            <option>17</option>
+                        </select>
+                        <span>살</span>
+                    </div>
+                    <div class="regist_dog">
+                        <label class="regist_label">강아지 종류</label>
+                        <select name="regist_kind">
+                            <option value="Maltese">말티즈</option>
+                            <option value="Pomeranian">포메라니안</option>
+                            <option value="Bichon">비숑</option>
+                            <option value="poodle">푸들</option>
+                            <option value="Pekinese">페키니즈</option>
+                            <option value="Toy poodle">토이푸들</option>
+                        </select>
+                    </div>
+                    <div class="regist_dog">
+                        <label class="regist_label">성별</label>
+                        <input type="radio" class="dog_gender" name="regist_gender" value="male">male
+                        <input type="radio" class="dog_gender" name="regist_gender" value="female">female
+                    </div>
+
+                    <div class="regist_dog">
+                        <label class="regist_label">지역</label>
+                        <select name="regist_locate">
+                            <option value="Hokkaido">北海道</option>
+                            <option value="Aomori">青森県</option>
+                            <option value="Iwate">岩手県</option>
+                            <option value="Miyagi">宮城県</option>
+                            <option value="Akita">秋田県</option>
+                            <option value="Yamagata">山形県</option>
+                            <option value="Fukushima">福島県</option>
+                            <option value="Tochigi">栃木県</option>
+                            <option value="Gunma">群馬県</option>
+                            <option value="Saitama">埼玉県</option>
+                            <option value="Chiba">千葉県</option>
+                            <option value="Tokyo">東京都</option>
+                            <option value="Kanagawa">神奈川県</option>
+                            <option value="Niigata">新潟県</option>
+                            <option value="Toyama">富山県</option>
+                            <option value="Ishikawa">石川県</option>
+                            <option value="Fukui">福井県</option>
+                            <option value="Yamanashi">山梨県</option>
+                            <option value="Nagano">長野県</option>
+                            <option value="Gifu">岐阜県</option>
+                            <option value="Shizuoka">静岡県</option>
+                            <option value="Aichi">愛知県</option>
+                            <option value="Mie">三重県</option>
+                            <option value="Shiga">滋賀県</option>
+                            <option value="Kyoto">京都府</option>
+                            <option value="Osaka">大阪府</option>
+                            <option value="Hyogo">兵庫県</option>
+                            <option value="Nara">奈良県</option>
+                            <option value="Wakayama">和歌山県</option>
+                            <option value="Tottori">鳥取県</option>
+                            <option value="Shimane">島根県</option>
+                            <option value="Okayama">岡山県</option>
+                            <option value="Hiroshima">広島県</option>
+                            <option value="Yamaguchi">山口県</option>
+                            <option value="Tokushima">徳島県</option>
+                            <option value="Kagawa">香川県</option>
+                            <option value="Ehime">愛媛県</option>
+                            <option value="Kochi">高知県</option>
+                            <option value="Fukuoka">福岡県</option>
+                            <option value="Saga">佐賀県</option>
+                            <option value="Nagasaki">長崎県</option>
+                            <option value="Kumamoto">熊本県</option>
+                            <option value="Oita">大分県</option>
+                            <option value="Miyazaki">宮崎県</option>
+                            <option value="Kagoshima">鹿児島県</option>
+                            <option value="Okinawa">沖縄県</option>
+                        </select>
+                    </div>
+
+                    <div class="regist_dog" id="dog_pic">
+                        <label class="regist_label" id="regist_img">강아지사진</label>
+                        <input type="file" class="custom-file-input" id="file">
+                        <label class="custom-file-label" for="file"></label>
+                    </div>
+
+                </div>
+            </section>
+            <footer class="modal-card-foot">
+                <button class="button is-success" onclick="dog_post()">Save changes</button>
+                <button class="button" onclick="$('.modal').removeClass('is-active')">Cancel</button>
+            </footer>
+        </div>
+    </div>
+</div>
+</body>
+</html>
