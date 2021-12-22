@@ -315,7 +315,7 @@
         function sign_out() {
             //token을 버릴거야~ 라고 할떄, (자유이용권을 버린다고 할때) .removeCookie라는 jquery함수를 사용함
             $.removeCookie('mytoken', {path: '/'});
-            alert('로그아웃!')
+            alert('ログアウト!')
             window.location.href = "/"
         }
 
@@ -529,11 +529,11 @@
             <section class="modal-card-body">
                 <div class="content_regist">
                     <div class="regist_dog">
-                        <label class="regist_label">ベットの名前</label>
+                        <label class="regist_label">ペットの名前</label>
                         <input type="text" id="regist_name">
                     </div>
                     <div class="regist_dog">
-                        <label class="regist_label">강아지 나이</label>
+                        <label class="regist_label">ペットの年齢</label>
                         <select name="regist_age">
                             <option>1</option>
                             <option>2</option>
@@ -556,7 +556,7 @@
                         <span>살</span>
                     </div>
                     <div class="regist_dog">
-                        <label class="regist_label">강아지 종류</label>
+                        <label class="regist_label">犬種</label>
                         <select name="regist_kind">
                             <option value="Maltese">말티즈</option>
                             <option value="Pomeranian">포메라니안</option>
@@ -567,13 +567,13 @@
                         </select>
                     </div>
                     <div class="regist_dog">
-                        <label class="regist_label">성별</label>
+                        <label class="regist_label">ペットの性別</label>
                         <input type="radio" class="dog_gender" name="regist_gender" value="male">male
                         <input type="radio" class="dog_gender" name="regist_gender" value="female">female
                     </div>
 
                     <div class="regist_dog">
-                        <label class="regist_label">지역</label>
+                        <label class="regist_label">ペットの住む地域</label>
                         <select name="regist_locate">
                             <option value="Hokkaido">北海道</option>
                             <option value="Aomori">青森県</option>
@@ -625,7 +625,7 @@
                     </div>
 
                     <div class="regist_dog" id="dog_pic">
-                        <label class="regist_label" id="regist_img">강아지사진</label>
+                        <label class="regist_label" id="regist_img">ペットの写真</label>
                         <input type="file" class="custom-file-input" id="file">
                         <label class="custom-file-label" for="file"></label>
                     </div>

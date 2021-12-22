@@ -17,7 +17,7 @@
             let password = $("#login_pwd").val();
 
             if (username == "") {
-                $("#help-id").text("아이디를 입력해주세요");
+                $("#help-id").text("IDを入力してください");
                 $("#login_id").addClass("is-danger");
                 return;
             } else {
@@ -27,7 +27,7 @@
             }
 
             if (password == "") {
-                $("#help-password").text("비밀번호를 입력해주세요");
+                $("#help-password").text("パスワードを入力してください");
                 $("#login_pwd").addClass("is-danger");
                 return;
             } else {
@@ -54,26 +54,6 @@
             })
         }
 
-        // function sign_up() {
-        //     let username = ""
-        //     let password = ""
-        //     let password2 = ""
-        //
-        //     $.ajax({
-        //         type: "POST",
-        //         url: "/sign_up/save",
-        //         data: {
-        //             username_give: username,
-        //             password_give: password
-        //         },
-        //         success: function (response) {
-        //             alert("회원가입을 축하드립니다!")
-        //             window.location.replace("/main")
-        //         }
-        //     });
-        //
-        // }
-
         function sign_btn_toggle() {
 
             $(".sign_up_box").toggleClass("is-hidden");
@@ -89,12 +69,12 @@
             let password2 = $("#sign_up_pwd_2").val()
 
             if ($("#sign_up_id").hasClass("is-danger")) {
-                alert("아이디를 다시 확인해주세요")
+                alert("IDをもう一度ご確認ください")
                 return;
             }
 
             if (name1 == "" || name2 == "") {
-                $("#sign-help-name").text("이름을 입력해주세요")
+                $("#sign-help-name").text("お名前を入力してください")
                 $(".input_name").addClass("is-danger")
                 return;
             } else {
@@ -103,12 +83,12 @@
             }
 
             if (username == "") {
-                $("#sign-help-id").text("아이디를 입력해주세요");
+                $("#sign-help-id").text("IDを入力してください");
                 $("#sign_up_id").addClass("is-danger");
                 return;
 
             } else if (!is_nickname(username)) {
-                $("#sign-help-id").text("맞지 않은 형식의 아이디 입니다.");
+                $("#sign-help-id").text("IDの形式が正しくありません");
                 $("#sign_up_id").addClass("is-danger").focus();
                 return;
 
@@ -118,12 +98,12 @@
             }
 
             if (password == "") {
-                $("#sign-help-pwd").text("비밀번호를 입력해주세요");
+                $("#sign-help-pwd").text("パスワードを入力してください");
                 $("#sign_up_pwd").addClass("is-danger");
                 return;
 
             } else if (!is_password(password)) {
-                $("#sign-help-pwd").text("맞지 않은 형식의 비밀번호 입니다");
+                $("#sign-help-pwd").text("パスワードの形式が正しくありません");
                 $("#sign_up_pwd").addClass("is-danger").focus();
                 return;
 
@@ -133,12 +113,12 @@
             }
 
             if (password2 == "") {
-                $("#sign-help-pwd-2").text("확인 비밀번호를 입력해주세요");
+                $("#sign-help-pwd-2").text("確認パスワードを入力してください");
                 $("#sign_up_pwd_2").addClass("is-danger")
                 return;
 
             } else if (password != password2) {
-                $("#sign-help-pwd-2").text("비밀번호가 일치하지 않습니다.");
+                $("#sign-help-pwd-2").text("パスワードが一致してません");
                 $("#sign_up_pwd_2").addClass("is-danger").focus();
                 return;
 
@@ -157,7 +137,7 @@
                     password_give: password
                 },
                 success: function (response) {
-                    alert("회원가입을 축하드립니다!")
+                    alert("入会が完了しました〜")
                     window.location.replace('/login')
 
                 }
@@ -182,11 +162,11 @@
             let username = $("#sign_up_id").val()
 
             if (username == "") {
-                $("#sign-help-id").text("아이디를 입력해주세요");
+                $("#sign-help-id").text("IDを入力してください");
                 $("#sign_up_id").addClass("is-danger");
                 return;
             } else if (!is_nickname(username)) {
-                $("#sign-help-id").text("맞지 않은 형식의 아이디 입니다.");
+                $("#sign-help-id").text("IDの形式が正しくありません");
                 $("#sign_up_id").addClass("is-danger").focus();
                 return;
             } else {
@@ -202,11 +182,11 @@
                 },
                 success: function (response) {
                     if (response["exists"]) {
-                        $("#sign-help-id").text("이미 존재하는 아이디입니다.")
+                        $("#sign-help-id").text("すでに存在するIDです")
                         $("#sign_up_id").addClass("is-danger");
                         $("#input-username").focus();
                     } else {
-                        $("#sign-help-id").text("사용할 수 있는 아이디입니다");
+                        $("#sign-help-id").text("登録できるIDです");
                     }
                 }
             })
@@ -282,15 +262,12 @@
         }
 
         .container {
-            /*display: flex;*/
-            /*justify-content: center;*/
             align-items: center;
             margin: auto;
         }
 
         .box {
             margin: auto;
-            /*border: 1px solid black;*/
             border-radius: 20px;
             width: 400px;
             height: 400px;
@@ -303,10 +280,6 @@
         }
 
         .content {
-            /*position: relative;*/
-            /*display: flex;*/
-            /*flex-direction: column;*/
-            /*align-items: baseline;*/
             margin-top: 20px;
             margin-left: 20px;
             color: lightgray;
@@ -325,7 +298,6 @@
             border-radius: 5px;
             font-size: 15px;
             text-align: center;
-            /*padding: 10px;*/
 
         }
 
@@ -356,7 +328,6 @@
             height: 40px;
             padding: 2px;
             margin: 5px;
-            /*border-radius: 10px;*/
             font-size: 20px;
             border-style: none;
             background: none;
@@ -366,9 +337,6 @@
 
         .sign_up_button {
             text-align: center;
-            /*margin: auto;*/
-            /*margin-top: 40px;*/
-            /*border : 1px solid black;*/
         }
 
         .button_group {
@@ -376,17 +344,10 @@
             height: 40px;
             padding: 2px;
             margin: 5px;
-            /*border-radius: 10px;*/
             font-size: 20px;
             border-style: none;
             background: none;
             border-bottom: 3px solid darkseagreen;
-        }
-
-        .login {
-            /*border : 1px solid black;*/
-            width: 200px;
-            margin: auto;
         }
 
         .btn_login {
@@ -427,12 +388,10 @@
         .is-hidden {
             display: none;
         }
+
     </style>
 </head>
 <body>
-<!--<nav class="nav_bar">-->
-
-<!--</nav>-->
 <section class="section">
     <div class="container">
         <div class="box">
