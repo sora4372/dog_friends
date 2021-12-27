@@ -1,13 +1,15 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script src="{{ url_for('static', filename='dog_friends.js') }}"></script>
 
     <!-- Fontawesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
@@ -15,233 +17,15 @@
 
     <!-- Bulma CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma-rtl.min.css">
+    <link href="{{ url_for('static', filename='dog_friends.css') }}" rel="stylesheet">
 
 
     <title>Document</title>
-
-    <style>
-        body {
-            margin: 0;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 150px;
-            background: lightsalmon;
-        }
-
-        .navbar_logo {
-            margin-left: 30px;
-            font-size: 50px;
-        }
-
-        .navbar_title {
-            font-size: 40px;
-            word-spacing: 1rem;
-        }
-
-        .profile {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 30px;
-        }
-
-        .strong_name {
-            color: black;
-            font-size: 20px;
-            margin-right: 3px;
-        }
-
-        .dog_main {
-            width: 95%;
-            margin: auto;
-        }
-
-        .dog_list {
-            /*display: grid;*/
-            /*grid-template-rows: repeat(5, 600px);*/
-            /*grid-template-columns: repeat(3, 350px);*/
-            /*justify-content: space-between;*/
-            display: flex;
-            flex-wrap: wrap;
-            flex-direction: row;
-            justify-content: space-around;
-            margin: 30px;
-        }
-
-        .dog_book {
-            /*border: 3px solid black;*/
-            border-radius: 30px;
-            box-shadow: 3px 3px 3px 3px lightgray;
-            width: 300px;
-            height: 470px;
-            margin: 30px auto;
-            /*width : 25%;*/
-        }
-
-        .dog_photo:hover {
-            transform: scale3d(1.1, 1.1, 1.1);
-            cursor: pointer;
-        }
-
-        .dog_photo img {
-            display: block;
-            /*border: 3px solid pink;*/
-            border-radius: 20px;
-            width: 250px;
-            height: 250px;
-            margin: 25px auto;
-            /*text-align: center;*/
-        }
-
-        .toggle_heart {
-            margin: 0 30px;
-        }
-
-        .regist_btn {
-            display: flex;
-            /*width: px;*/
-            margin: 20px;
-        }
-
-        #select_search {
-            width: 100px;
-            height: 50px;
-            font-size: 18px;
-            margin: 0 30px;
-            border: none;
-            background: lightsalmon;
-            border-radius: 10px;
-            padding: 5px;
-            color: white;
-        }
-
-        .btn_style {
-            width: 180px;
-            height: 55px;
-            font-size: 20px;
-            background: lightsalmon;
-            border: none;
-            border-radius: 10px;
-            color: white;
-        }
-
-        .btn_style:hover {
-            transform: scale3d(1.1, 1.1, 1.1);
-            cursor: pointer;
-        }
-
-        .front_dog {
-            font-size: 25px;
-            text-align: center;
-        }
-
-        .dog_content {
-            margin: 10px;
-        }
-
-        .modal-card-body {
-            height: 350px;
-            font-size: 20px;
-        }
-
-        .button {
-            height: 40px;
-            margin: 5px;
-        }
-
-        .regist_dog {
-            height: 30px;
-            margin: 15px;
-        }
-
-        .regist_label {
-            display: inline-block;
-            width: 150px;
-            height: 25px;
-        }
-
-        .dog_gender {
-            margin-right: 10px;
-            font-size: 20px;
-        }
-
-        .modal_background {
-            background: dimgray;
-        }
-
-        .modal_card {
-            margin-top: 20px;
-            display: none;
-            background: black;
-            width: 500px;
-            heigth: 500px;
-        }
-
-        .is_active {
-            display: block;
-        }
-
-        .cancel_btn {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            padding: 10px 10px;
-            color: white;
-            font-size: 30px;
-        }
-
-        #dog_pic input {
-            /*border: 5px solid black;*/
-
-        }
-
-        .dog_picture {
-            border: 1px solid lightgray;
-            background: lightyellow;
-            border-radius: 10px;
-        }
-
-        #dog_pic input[type="file"] {
-            /*border: 3px solid black;*/
-            height: 25px;
-            overflow: hidden;
-        }
-
-        #dog_date {
-            font-size: 13px;
-            margin-left: 20px;
-        }
-
-        #login_btn {
-            border: none;
-            background: transparent;
-            border-bottom: 1px solid black;
-            font-size: 16px;
-            cursor: pointer;
-
-        }
-
-        #logout_btn {
-            border: none;
-            background: transparent;
-            border-bottom: 1px solid black;
-            font-size: 16px;
-            cursor: pointer;
-        }
-    </style>
-
     <script>
-
         let today = new Date().toString('%Y-%m-%d-%H-%M-%S')
         let name = '{{name}}'
-        // alert(today)
 
         $(document).ready(function () {
-            // alert(name)
             if (name == "") {
                 $("#login_btn").show();
                 $("#logout_btn").hide();
@@ -259,175 +43,6 @@
 
         })
 
-        // function dog_search(dog_kind) {
-        //     $.ajax({
-        //         type: 'GET',
-        //         url: `/get_data?dogkind_give=${dog_kind}`,
-        //         data: {},
-        //         success: function (response) {
-        //             if(response["result"] == "success") {
-        //                 let kind = response['kind']
-        //                 alert(kind)
-        //             }
-        //         }
-        //     })
-        // }
-
-        function dog_post() {
-            let dog_name = $("#regist_name").val()
-            let dog_age = $('select[name=regist_age]').val()
-            let dog_kind = $('select[name=regist_kind]').val()
-            let dog_gender = $(':radio[name=regist_gender]:checked').val()
-            let dog_locate = $('select[name=regist_locate]').val()
-            let file = $('#file')[0].files[0]
-
-            console.log(dog_kind)
-
-            let form_data = new FormData()
-
-            form_data.append('dogname_give', dog_name)
-            form_data.append('dogage_give', dog_age)
-            form_data.append('dogkind_give', dog_kind)
-            form_data.append('doggender_give', dog_gender)
-            form_data.append('doglocate_give', dog_locate)
-            form_data.append('filedate_give', today)
-            form_data.append('file_give', file)
-
-
-            $.ajax({
-                type: 'POST',
-                url: "/dog_regist",
-                data: form_data,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function (response) {
-                    if (response['result'] == 'success') {
-                        alert(response['msg'])
-                        window.location.reload()
-                    } else {
-                        alert(response['msg'])
-                    }
-                }
-            })
-        }
-
-        function sign_out() {
-            //token을 버릴거야~ 라고 할떄, (자유이용권을 버린다고 할때) .removeCookie라는 jquery함수를 사용함
-            $.removeCookie('mytoken', {path: '/'});
-            alert('ログアウト!')
-            window.location.href = "/"
-        }
-
-        // console.log(dog_name,dog_year,"년",dog_month,"월",dog_day,"일",dog_kind,dog_gender)
-        // function profile_name(username){
-        //     $.ajax({
-        //         type : 'GET',
-        //         url : '/profile',
-        //         data : {username_give : username},
-        //         success : function(response){
-        //             let user_name = response['username']
-        //
-        //         }
-        //     })
-        // }
-        function dog_search() {
-            let dog_search = $("select[name=dog_search]").val();
-            $('#dog_list').empty()
-
-            $.ajax({
-                type: 'GET',
-                url: '/locate',
-                data: {doglocate_give: dog_search},
-                success: function (response) {
-                    let all_dogs = response['dogs_list']
-                    console.log(all_dogs)
-                    for (let i = 0; i < all_dogs.length; i++) {
-                        console.log(all_dogs[i])
-                        let dog = all_dogs[i]
-                        let dog_name = dog['dog_name']
-                        let dog_kind = dog['dog_kind']
-                        let dog_locate = dog['dog_locate']
-                        let file = dog['file']
-                        let dog_date = new Date(dog["upload"])
-                        let time_before = time2str(dog_date)
-
-                        let dog_html = `<div class="dog_book">
-                                            <div class="dog_photo"><a href = "/detail/${file}"><img src="../static/${file}" alt="blue_pants"></a>
-                                            </div>
-                                            <div class="toggle_heart" aria-label="heart" onclick="toggle_heart('heart')">
-                                                <span class="icon is-small"><i class="fa fa-heart"></i></span>
-                                                <span class="heart-num">1.2k</span>
-                                            </div>
-                                            <div id="dog_name" class ="front_dog">${dog_name}</div>
-                                            <div id="dog_kind" class ="front_dog">${dog_kind}</div>
-                                            <div id="dog_locate" class ="front_dog">${dog_locate}</div>
-                                            <div id="dog_date">${time_before}</div>
-                                        </div> `
-
-                        $('#dog_list').append(dog_html)
-                    }
-                }
-            })
-        }
-        function toggle_heart(dog, type) {
-            console.log(dog, type)
-
-            // let $a_like = $(`#${post_id} a[aria-label='${type}']`)
-            let $a_like = $(`#${dog} div[aria-label="heart"]`)
-            let $i_like = $a_like.find('i')
-            if ($i_like.hasClass('fa-heart')){
-                $.ajax({
-                    type: 'POST',
-                    url: '/update_like',
-                    data: {
-                        post_id_give: dog,
-                        type_give: type,
-                        action_give: 'unlike'
-                    },
-                    success: function (response) {
-                        console.log('unlike')
-                        $i_like.addClass('fa-heart-o').removeClass('fa-heart')
-                        $a_like.find('span.like-num').text(response['count'])
-                    }
-                })
-            }
-        }
-
-        function time2str(date) {
-            let today = new Date()
-            let time = (today - date) / 1000 / 60  // 분
-
-            if (time < 60) {
-                return parseInt(time) + "分前"
-            }
-            time = time / 60  // 시간
-            if (time < 24) {
-                return parseInt(time) + "時間前"
-            }
-            time = time / 24
-            if (time < 7) {
-                return parseInt(time) + "日前"
-            }
-            return `${date.getFullYear()}年 ${date.getMonth() + 1}月 ${date.getDate()}日`
-        }
-
-        function num2str(count) {
-            if (count > 10000) {
-                return parseInt(count / 1000) + "k"
-            }
-            if (count > 500) {
-                return parseInt(count / 100) / 10 + "k"
-            }
-            if (count == 0) {
-                return ""
-            }
-            return count
-        }
-
-        function sign() {
-            window.location.replace('/login')
-        }
     </script>
 </head>
 
@@ -440,9 +55,6 @@
         DOG WORLD
     </div>
     <div class="profile">
-        <!--        <div class="profile_photo">-->
-        <!--            <img src="../static/jini2.jpeg">-->
-        <!--        </div>-->
         <div class="profile_name"><span class="strong_name">{{name}}</span><strong>様</strong></div>
         <div class="profile_login">
             <button id="login_btn" onclick="sign()">login</button>

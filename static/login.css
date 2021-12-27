@@ -1,0 +1,142 @@
+     * {
+            font-family: 'Shippori Antique B1', sans-serif;
+        }
+
+        body {
+            margin: auto;
+        }
+
+        .section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem
+        }
+
+        .container {
+            align-items: center;
+            margin: auto;
+        }
+
+        .box {
+            margin: auto;
+            border-radius: 20px;
+            width: 400px;
+            height: 400px;
+        }
+
+        .sign_up_box {
+            border-radius: 20px;
+            width: 450px;
+            height: 400px;
+        }
+
+        .content {
+            margin-top: 20px;
+            margin-left: 20px;
+            color: lightgray;
+        }
+
+        .user_icon {
+            display: flex;
+            align-items: center;
+        }
+
+        .input_text {
+            width: 300px;
+            height: 40px;
+            margin: 10px 15px;
+            border: 2px solid lightgray;
+            border-radius: 5px;
+            font-size: 15px;
+            text-align: center;
+
+        }
+
+        .help-login {
+            color: red;
+            font-size: 14px;
+            margin-top: 1px;
+            margin-left: 45px;
+        }
+
+        .login_button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login_sign_up {
+            color: lightgray;
+        }
+
+        .login_sign_up:hover {
+            color: green;
+        }
+
+        .login_menu {
+            color: green;
+            width: 170px;
+            height: 40px;
+            padding: 2px;
+            margin: 5px;
+            font-size: 20px;
+            border-style: none;
+            background: none;
+            border-bottom: 3px solid darkseagreen;
+        }
+
+
+        .sign_up_button {
+            text-align: center;
+        }
+
+        .button_group {
+            width: 170px;
+            height: 40px;
+            padding: 2px;
+            margin: 5px;
+            font-size: 20px;
+            border-style: none;
+            background: none;
+            border-bottom: 3px solid darkseagreen;
+        }
+
+        .btn_login {
+            text-align: center;
+            width: 200px;
+            height: 45px;
+            padding: 2px;
+            margin-top: 20px;
+            border-radius: 10px;
+            border: none;
+            font-size: 20px;
+            background: limegreen;
+        }
+
+        .button-group {
+            display : flex;
+            justify-content: center;
+        }
+
+        .button_group:hover {
+            cursor: pointer;
+        }
+
+        .id_confirm {
+            position: absolute;
+            top: 128px;
+            border: none;
+            border-radius: 5px;
+            background: lightsalmon;
+            width: 70px;
+            height: 50px;
+        }
+
+        .is-danger {
+            border: 2px solid red;
+        }
+
+        .is-hidden {
+            display: none;
+        }

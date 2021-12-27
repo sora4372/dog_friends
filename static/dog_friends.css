@@ -1,0 +1,204 @@
+body {
+    margin: 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 150px;
+    background: lightsalmon;
+}
+
+.navbar_logo {
+    margin-left: 30px;
+    font-size: 50px;
+}
+
+.navbar_title {
+    font-size: 40px;
+    word-spacing: 1rem;
+}
+
+.profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px;
+}
+
+.strong_name {
+    color: black;
+    font-size: 20px;
+    margin-right: 3px;
+}
+
+.dog_main {
+    width: 95%;
+    margin: auto;
+}
+
+.dog_list {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 30px;
+}
+
+.dog_book {
+    border-radius: 30px;
+    box-shadow: 3px 3px 3px 3px lightgray;
+    width: 300px;
+    height: 470px;
+    margin: 30px auto;
+    /*width : 25%;*/
+}
+
+.dog_photo:hover {
+    transform: scale3d(1.1, 1.1, 1.1);
+    cursor: pointer;
+}
+
+.dog_photo img {
+    display: block;
+    border-radius: 20px;
+    width: 250px;
+    height: 250px;
+    margin: 25px auto;
+}
+
+.toggle_heart {
+    margin: 0 30px;
+}
+
+.regist_btn {
+    display: flex;
+    /*width: px;*/
+    margin: 20px;
+}
+
+#select_search {
+    width: 100px;
+    height: 50px;
+    font-size: 18px;
+    margin: 0 30px;
+    border: none;
+    background: lightsalmon;
+    border-radius: 10px;
+    padding: 5px;
+    color: white;
+}
+
+.btn_style {
+    width: 180px;
+    height: 55px;
+    font-size: 20px;
+    background: lightsalmon;
+    border: none;
+    border-radius: 10px;
+    color: white;
+}
+
+.btn_style:hover {
+    transform: scale3d(1.1, 1.1, 1.1);
+    cursor: pointer;
+}
+
+.front_dog {
+    font-size: 25px;
+    text-align: center;
+}
+
+.dog_content {
+    margin: 10px;
+}
+
+.modal-card-body {
+    height: 350px;
+    font-size: 20px;
+}
+
+.button {
+    height: 40px;
+    margin: 5px;
+}
+
+.regist_dog {
+    height: 30px;
+    margin: 15px;
+}
+
+.regist_label {
+    display: inline-block;
+    width: 150px;
+    height: 25px;
+}
+
+.dog_gender {
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.modal_background {
+    background: dimgray;
+}
+
+.modal_card {
+    margin-top: 20px;
+    display: none;
+    background: black;
+    width: 500px;
+    heigth: 500px;
+}
+
+.is_active {
+    display: block;
+}
+
+.cancel_btn {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px 10px;
+    color: white;
+    font-size: 30px;
+}
+
+#dog_pic input {
+    /*border: 5px solid black;*/
+
+}
+
+.dog_picture {
+    border: 1px solid lightgray;
+    background: lightyellow;
+    border-radius: 10px;
+}
+
+#dog_pic input[type="file"] {
+    height: 25px;
+    overflow: hidden;
+}
+
+#dog_date {
+    font-size: 13px;
+    margin-left: 20px;
+}
+
+#login_btn {
+    border: none;
+    background: transparent;
+    border-bottom: 1px solid black;
+    font-size: 16px;
+    cursor: pointer;
+
+}
+
+#logout_btn {
+    border: none;
+    background: transparent;
+    border-bottom: 1px solid black;
+    font-size: 16px;
+    cursor: pointer;
+}

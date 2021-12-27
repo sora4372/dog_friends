@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -12,222 +11,15 @@
 
     <!-- jquery paging -->
     <script src="https://pagination.js.org/dist/2.1.5/pagination.js"></script>
+    <link href="{{ url_for('static', filename='detail.css') }}" rel="stylesheet">
 
     <!-- Fontawesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
           integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-          integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     <title>Detail</title>
-    <style>
-        body {
-            margin: 0;
-        }
-
-        .wrap {
-            width: 700px;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 150px;
-            background: lightsalmon;
-        }
-
-        .navbar_logo {
-            margin-left: 30px;
-            font-size: 50px;
-        }
-
-        .navbar_title {
-            font-size: 40px;
-            word-spacing: 1rem;
-        }
-
-        .profile {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin : 30px;
-        }
-
-        .profile_login {
-            margin-left : 10px;
-        }
-
-        .content_detail {
-            margin-left: 20px;
-        }
-
-        .strong_name {
-            color : black;
-            font-size: 20px;
-            margin-right: 3px;
-        }
-
-        .content {
-            display: flex;
-            justify-content: space-between;
-            /*box-shadow: 5px 5px 5px 5px gray;*/
-            border-radius: 30px;
-            width: 500px;
-            margin: 30px auto;
-            padding: 2px;
-        }
-
-        .dog_detail {
-            /*border: 1px solid green;*/
-            width: 400px;
-            font-size: 20px;
-            margin: 10px;
-            padding: 5px;
-        }
-
-        .dog_photo img {
-            display: block;
-            /*border: 3px solid pink;*/
-            border-radius: 20px;
-            width: 300px;
-            height: 300px;
-            margin: 25px auto;
-            /*text-align: center;*/
-        }
-
-        .content_detail {
-            width: 500px;
-            margin: auto;
-        }
-
-        .content_label {
-            color: blue;
-            text-align: left;
-            width: 100px;
-            margin-left: 30px;
-            /*border : 1px solid black;*/
-        }
-
-        .dog_detail {
-            display: flex;
-            /*justify-content: space-between;*/
-        }
-
-        .detail_content {
-            margin-left: 10px;
-            text-align: center;
-        }
-
-        .posting_card {
-            display: flex;
-            width: 95%;
-            height: 150px;
-            margin: 50px auto;
-            /*border: 5px solid pink;*/
-            border-radius: 10px;
-        }
-
-        .paginaion {
-            padding: 15px 0 5px 10px;
-            display: table;
-            margin-left: auto;
-            margin-right: auto;
-            text-align: center;
-        }
-
-        .posting_profile {
-            box-shadow: lightgray 5px 5px 5px;
-            width: 100px;
-            height: 25px;
-            margin-top: 30px;
-            padding: 5px;
-            border-radius: 10px;
-            /*border: 1px solid red;*/
-            text-align: center;
-            font-size: 18px;
-
-        }
-
-        .posting_content {
-            width: 1000px;
-            border: 3px solid black;
-            margin: 20px;
-            font-size: 20px;
-        }
-
-        .posting_posting {
-            display: flex;
-            align-items:end;
-            justify-content: center;
-            margin-bottom : 10px;
-        }
-
-        .posting_posting button {
-            width: 100px;
-            height: 50px;
-            margin: 5px;
-            background : lightsalmon;
-            /*border: 3px solid blue;*/
-            font-size: 20px;
-            border: none;
-            border-radius: 10px;
-        }
-
-        .comment {
-            width: 95%;
-            margin: 50px auto;
-            /*border: 5px solid pink;*/
-            border-radius: 10px;
-        }
-
-        .comment_profile {
-            font-size: 18px;
-            margin: 10px;
-        }
-
-        #comment_name {
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        .date {
-            font-size: 13px;
-            position: relative;
-            margin-left: 10px;
-        }
-
-        .comment_content {
-            /*margin : auto;*/
-            font-size: 16px;
-            /*border : 1px solid black;*/
-            width: 97%;
-            height: auto;
-            /*margin : 10px;*/
-            border-radius: 10px;
-            padding: 10px;
-            box-shadow: 1px 1px 1px 1px darkolivegreen;
-            /*overflow : auto;*/
-            word-break: break-all;
-        }
-
-        #logout_btn {
-            border: none;
-            background: transparent;
-            border-bottom: 1px solid black;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        .paging-div {
-            padding: 15px 0px 5px 10px;
-            display: table;
-            margin-left: auto;
-            margin-right: auto;
-        }
-    </style>
 
     <script>
+
         let today = new Date().toDateString()
         let upload_time = new Date().toString()
 
@@ -253,24 +45,24 @@
                         let file = data[i]['file']
 
                         let dog_html = `
-                                                    <div class="dog_photo" id="dog_photo">
-                                                        <img src="../static/${file}" alt="">
-                                                    </div>
-                                                    <div class="content_detail">
-                                                        <div class="dog_detail" id="dog_name">
-                                                            <div class = "content_label">名前</div><span class="detail_content">${dog_name}</span>
-                                                        </div>
-                                                        <div class="dog_detail" id="dog_age">
-                                                            <div class = "content_label">犬種</div><span class="detail_content">${dog_kind}</span></div>
-                                                        <div class="dog_detail" id="dog_age">
-                                                            <div class = "content_label">年齢</div><span class="detail_content">${dog_age} 才</span></div>
-                                                        <div class="dog_detail" id="dog_gender">
-                                                            <div class = "content_label">性別</div><span class="detail_content">${dog_gender}</span></div>
-                                                        <div class="dog_detail" id="dog_location">
-                                                            <div class = "content_label">地域</div><span class="detail_content">${dog_locate}</span></div>
-                                                        <div class="dog_detail" id="dog_username">
-                                                             <div class = "content_label">飼い主様</div><span class="detail_content">${username}</span></div>
-                                                    </div>`
+                                <div class="dog_photo" id="dog_photo">
+                                    <img src="../static/${file}" alt="">
+                                </div>
+                                <div class="content_detail">
+                                    <div class="dog_detail" id="dog_name">
+                                        <div class = "content_label">名前</div><span class="detail_content">${dog_name}</span>
+                                    </div>
+                                    <div class="dog_detail" id="dog_age">
+                                        <div class = "content_label">犬種</div><span class="detail_content">${dog_kind}</span></div>
+                                    <div class="dog_detail" id="dog_age">
+                                        <div class = "content_label">年齢</div><span class="detail_content">${dog_age} 才</span></div>
+                                    <div class="dog_detail" id="dog_gender">
+                                        <div class = "content_label">性別</div><span class="detail_content">${dog_gender}</span></div>
+                                    <div class="dog_detail" id="dog_location">
+                                        <div class = "content_label">地域</div><span class="detail_content">${dog_locate}</span></div>
+                                    <div class="dog_detail" id="dog_username">
+                                         <div class = "content_label">飼い主様</div><span class="detail_content">${username}</span></div>
+                                </div>`
                         $('.content').append(dog_html)
                     }
                 }
@@ -308,7 +100,9 @@
             window.location.href = "/"
         }
 
+
     </script>
+
 </head>
 <body>
 <nav class="navbar">
